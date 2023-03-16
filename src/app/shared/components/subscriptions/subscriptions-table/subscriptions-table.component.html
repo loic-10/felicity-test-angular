@@ -1,0 +1,105 @@
+<div class="subscriptions-table-component">
+  <mat-form-field class="w-100" fxFill appearance="fill">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. Mia"
+      #input
+    />
+  </mat-form-field>
+
+  <section class="example-container" tabindex="0">
+    <table mat-table fxFill class="w-100" [dataSource]="dataSource" matSort>
+      <!-- Reference Column -->
+      <ng-container matColumnDef="date" sticky>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="text-nowrap px-2"
+          mat-sort-header
+        >
+          Date
+        </th>
+        <td mat-cell class="text-nowrap px-2" *matCellDef="let row">
+          {{ row.date?.toString() }}
+        </td>
+      </ng-container>
+
+      <!-- CreateAt Column -->
+      <ng-container matColumnDef="service">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="text-nowrap px-2"
+          mat-sort-header
+        >
+          Service
+        </th>
+        <td mat-cell class="text-nowrap px-2" *matCellDef="let row">
+          {{ row.service?.name }}
+        </td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="user">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="text-nowrap px-2"
+          mat-sort-header
+        >
+          User
+        </th>
+        <td mat-cell class="text-nowrap px-2" *matCellDef="let row">
+          {{ row.user?.username }}
+        </td>
+      </ng-container>
+
+      <!-- Place work Column -->
+      <ng-container matColumnDef="period">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="text-nowrap px-2"
+          mat-sort-header
+        >
+          Number of months
+        </th>
+        <td mat-cell class="text-nowrap px-2" *matCellDef="let row">
+          {{ row.period }}
+        </td>
+      </ng-container>
+
+      <!-- Type position Column -->
+      <ng-container matColumnDef="total_price">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="text-nowrap px-2"
+          mat-sort-header
+        >
+          Total Price
+        </th>
+        <td mat-cell class="text-nowrap px-2" *matCellDef="let row">
+          {{ row.total_price }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row class="my-2" *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row w-100 py-3 text-center" fxFill *matNoDataRow>
+        <td class="mat-cell w-100 py-3 text-center" fxFill colspan="7">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </section>
+</div>

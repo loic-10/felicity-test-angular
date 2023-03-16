@@ -1,0 +1,25 @@
+<div class="services-component container">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1 class="py-3">List of services</h1>
+    <button
+      mat-mini-fab
+      color="primary"
+      aria-label="Example icon button with a menu icon"
+      (click)="openModal()"
+    >
+      <mat-icon class="mat-36">add</mat-icon>
+    </button>
+  </div>
+  <div
+    fxLayout.gt-xs="row wrap"
+    fxLayout.lt-sm="column"
+    fxLayoutAlign="start stretch"
+    fxLayoutGap.gt-xs="1rem grid"
+  >
+    <app-service-item
+      [service]="service"
+      [user]="selectCurrentUser$ | async"
+      *ngFor="let service of selectServices$ | async"
+    ></app-service-item>
+  </div>
+</div>

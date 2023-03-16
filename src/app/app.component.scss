@@ -1,0 +1,12 @@
+.app-component {
+  app-header {
+    z-index: 100;
+  }
+  .content {
+    min-height: 100vh;
+    padding-top: 100px;
+  }
+}
+.homeContainer {
+  padding-top: 4rem !important;
+}

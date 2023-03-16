@@ -1,0 +1,97 @@
+<div class="subscription-form-component">
+  <form
+    fxLayout="column"
+    fxLayoutGap="1rem"
+    class="bg-white"
+    [formGroup]="form"
+  >
+    <div
+      class="p-3 m-0"
+      fxLayout="row"
+      fxLayoutGap="1rem"
+      fxLayoutAlign="space-between center"
+    >
+      <span>
+        {{ "Subscribe to " + service?.name }}
+      </span>
+      <button mat-icon-button (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-divider class="mb-0"></mat-divider>
+    <mat-dialog-content class="m-0 p-0">
+      <div class="p-3">
+        <div fxLayout="column" fxLayoutGap="1rem">
+          <div
+            fxLayout.lt-md="column"
+            fxLayout.gt-sm="row"
+            fxLayoutGap="0.6rem"
+            fxLayoutAlign="space-between center"
+          >
+            <mat-form-field
+              class="w-100"
+              fxFlex.lt-md="100"
+              appearance="outline"
+            >
+              <mat-label>Number of months</mat-label>
+              <input
+                formControlName="period"
+                type="number"
+                matInput
+                placeholder="Number of months"
+              />
+              <mat-error *ngIf="customErrorField('period', 'required')">
+                Number of months required!
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="selectSubscriptionSubmitError$ | async"
+        >
+          {{ selectSubscriptionSubmitError$ | async }}
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-divider class="my-0"></mat-divider>
+    <mat-dialog-actions class="m-0 p-0 w-100">
+      <div class="p-3 w-100">
+        <div
+          fxLayout.lt-md="column"
+          fxLayout.gt-sm="row"
+          fxLayoutGap="1rem"
+          fxLayoutAlign="space-between center"
+          class="w-100"
+          fxFill
+        >
+          <button
+            mat-flat-button
+            color="primary"
+            class="py-2 w-100 position-relative"
+            (click)="onSubmit()"
+            [disabled]="
+              form.invalid || (selectSubscriptionSubmitLoading$ | async)
+            "
+          >
+            Enregistrer
+            <mat-icon
+              *ngIf="!(selectSubscriptionSubmitLoading$ | async)"
+              class="ms-2 fs-5"
+              matSuffix
+            >
+              save_alt
+            </mat-icon>
+            <span
+              *ngIf="selectSubscriptionSubmitLoading$ | async"
+              class="spinner-border spinner-border-sm ms-2"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </form>
+</div>

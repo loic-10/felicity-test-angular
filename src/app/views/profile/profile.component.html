@@ -1,0 +1,18 @@
+<div class="profile-components w-100">
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <div fxFlex="auto" fxLayout="column">
+      <button
+        class="px-5 py-3 rounded-0 text-capitalize"
+        mat-stroked-button
+        [routerLink]="'/profile/' + link"
+        [routerLinkActive]="'text-dark bg-white'"
+        *ngFor="let link of links"
+      >
+        {{ link }}
+      </button>
+    </div>
+    <div fxFlex="*" class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

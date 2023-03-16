@@ -1,0 +1,16 @@
+<mat-card class="w-100">
+  <ng-container *ngIf="selectUser$ | async; let user">
+    <mat-card-header>
+      <mat-card-title>{{ user.full_name }}</mat-card-title>
+      <mat-card-subtitle
+        >{{ user.username }}, {{ user.role }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <p>Nothing about me!</p>
+    </mat-card-content></ng-container
+  >
+  <mat-card-footer *ngIf="selectUserLoading$ | async">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>

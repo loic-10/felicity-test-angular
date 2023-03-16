@@ -23,6 +23,9 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
+              "node_modules/izitoast/dist/css/iziToast.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -97,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "57fc41fc-cad3-4b8f-86ac-1e2ac9467fec"
   }
 }

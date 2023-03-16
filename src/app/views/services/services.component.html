@@ -1,0 +1,15 @@
+<div class="services-component container py-3">
+  <h1 class="py-3">Nos services</h1>
+  <div
+    fxLayout.gt-xs="row wrap"
+    fxLayout.lt-sm="column"
+    fxLayoutAlign="start stretch"
+    fxLayoutGap.gt-xs="1rem grid"
+  >
+    <app-service-item
+      [service]="service"
+      [user]="selectCurrentUser$ | async"
+      *ngFor="let service of selectServices$ | async"
+    ></app-service-item>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="home-component container py-3">
+  <h1>Welcome to Felicity Subscription</h1>
+  <h3>Feel at home!</h3>
+  <div
+    fxLayout.gt-xs="row wrap"
+    fxLayout.lt-sm="column"
+    fxLayoutAlign="start stretch"
+    fxLayoutGap.gt-xs="1rem grid"
+  >
+    <app-service-item
+      [service]="service"
+      [user]="selectCurrentUser$ | async"
+      *ngFor="let service of selectServices$ | async"
+    ></app-service-item>
+  </div>
+</div>

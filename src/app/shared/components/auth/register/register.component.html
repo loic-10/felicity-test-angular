@@ -1,0 +1,139 @@
+<div class="service-form-component">
+  <form
+    fxLayout="column"
+    fxLayoutGap="1rem"
+    class="bg-white"
+    [formGroup]="form"
+  >
+    <div
+      class="p-3 m-0"
+      fxLayout="row"
+      fxLayoutGap="1rem"
+      fxLayoutAlign="space-between center"
+    >
+      <span>{{ "Register" }}</span>
+      <button mat-icon-button (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-divider class="mb-0"></mat-divider>
+    <mat-dialog-content class="m-0 p-0">
+      <div class="p-3">
+        <div fxLayout="column" fxLayoutGap="1rem">
+          <div
+            fxLayout="column"
+            fxLayoutGap="0.6rem"
+            fxLayoutAlign="space-between center"
+          >
+            <mat-form-field
+              class="w-100"
+              fxFlex.lt-md="100"
+              appearance="outline"
+            >
+              <mat-label>Username</mat-label>
+              <input
+                formControlName="username"
+                type="text"
+                matInput
+                placeholder="Username"
+              />
+              <mat-error *ngIf="customErrorField('username', 'required')">
+                Username required!
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field
+              class="w-100"
+              fxFlex.lt-md="100"
+              appearance="outline"
+            >
+              <mat-label>Full name</mat-label>
+              <input
+                formControlName="full_name"
+                type="text"
+                matInput
+                placeholder="Full name"
+              />
+              <mat-error *ngIf="customErrorField('full_name', 'required')">
+                Full name required!
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field
+              class="w-100"
+              fxFlex.lt-md="100"
+              appearance="outline"
+            >
+              <mat-label>Password</mat-label>
+              <input
+                formControlName="password"
+                type="text"
+                matInput
+                placeholder="Password"
+              />
+              <mat-error *ngIf="customErrorField('password', 'required')">
+                Password required!
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100" fxFlex.lt-md="100">
+              <mat-label>Role</mat-label>
+              <mat-select formControlName="role">
+                <mat-option
+                  class="text-capitalize"
+                  *ngFor="let role of roles"
+                  [value]="role"
+                >
+                  {{ role }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="customErrorField('role', 'required')">
+                Role required!
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="selectUserSubmitError$ | async"
+        >
+          {{ selectUserSubmitError$ | async }}
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-divider class="my-0"></mat-divider>
+    <mat-dialog-actions class="m-0 p-0 w-100">
+      <div class="p-3 w-100">
+        <div
+          fxLayout.lt-md="column"
+          fxLayout.gt-sm="row"
+          fxLayoutGap="1rem"
+          fxLayoutAlign="space-between center"
+          class="w-100"
+          fxFill
+        >
+          <button
+            mat-flat-button
+            color="primary"
+            class="py-2 w-100 position-relative"
+            (click)="onSubmit()"
+            [disabled]="form.invalid || (selectUserSubmitLoading$ | async)"
+          >
+            Enregistrer
+            <mat-icon
+              *ngIf="!(selectUserSubmitLoading$ | async)"
+              class="ms-2 fs-5"
+              matSuffix
+            >
+              save_alt
+            </mat-icon>
+            <span
+              *ngIf="selectUserSubmitLoading$ | async"
+              class="spinner-border spinner-border-sm ms-2"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </form>
+</div>
